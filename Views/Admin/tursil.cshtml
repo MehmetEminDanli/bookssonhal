@@ -1,0 +1,67 @@
+@model books.Models.AdminViewModels.TurlerVM
+
+@{
+  Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0">Tür Sil</h1>
+      </div>
+      <!-- /.col -->
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="/Admin">Anasayfa</a></li>
+          <li class="breadcrumb-item"><a href="/Admin/Turler">Türler</a></li>
+          <li class="breadcrumb-item active">Tür Sil</li>
+        </ol>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<!-- Main content -->
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- /.col-md-6 -->
+      <div class="col-lg-6">
+        <div class="card card-info">
+          <!-- /.card-header -->
+
+          <!-- form start -->
+          @Html.AntiForgeryToken()
+          <form class="form-horizontal" method="post" asp-controller="Admin"
+            asp-action="tsilmeonay"
+            asp-route-id="@ViewBag.TurInfo.Id">
+            <input asp-for="Id" type="hidden" value="@ViewBag.TurInfo.Id"
+              disabled />
+            <div class="card-body">
+              <div class="form-group row">
+
+                <div class="col-sm-10">
+                  <p> @ViewBag.TurInfo.TurAdi isimli türü siliyorsun </p>
+                </div>
+                <span asp-validation-for="TurAdi" class="text-danger ml-2 mt-2"></span>
+              </div>
+
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+              <a href="/Admin/Turler" class="btn btn-primary">Vazgeç</a>
+              <button type="submit" class="btn btn-warning float-right">
+                Sil
+              </button>
+            </div>
+            <!-- /.card-footer -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
